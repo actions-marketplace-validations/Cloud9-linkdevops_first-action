@@ -1,11 +1,25 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Update Changelog'
+description: 'Altomation update changelog'
+author: 'Team Devops'
 inputs:
-  milliseconds: # change this
+  changelog_file_name: # change this
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'name changelog file'
+    default: 'CHANGELOG.md'
+  changelog_fold_name: # change this
+    required: true
+    description: 'name changelog file'
+    default: 'changelog'
+  encoding: # change this
+    required: true
+    description: 'encoding read file'
+    default: 'utf-8'
+outputs:
+  changelog_version:
+    description: 'new version inside in changelog'
 runs:
   using: 'node12'
   main: 'dist/index.js'
+branding:
+  icon: 'box'
+  color: 'blue'
