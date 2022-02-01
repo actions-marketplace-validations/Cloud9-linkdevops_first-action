@@ -18,7 +18,7 @@ outputs:
   changelog_version:
     description: 'new version inside in changelog'
 runs:
-  using: 'node14'
+  using: 'node16'
   main: 'dist/index.js'
 branding:
   icon: 'box'
