@@ -7,18 +7,41 @@ on: # rebuild any PRs and main branch changes
       - 'releases/*'
 
 jobs:
-  build: # make sure build/ci work properly
+  test: # make sure build/ci work properly
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: |
-          npm install
-      - run: |
-          npm run all
-  test: # make sure the action works on a clean machine without building
+      - name: Github Checkout
+        uses: actions/checkout@v2
+
+      - name: Dependencies Node Install
+        run: npm install
+
+      - name: Run Test
+        run: |
+          npm run test
+
+      - name: Run Sonarqube
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: ./
+      - name: Github Checkout
+        uses: actions/checkout@v2
+
+      - name: Dependencies Node Install
+        run: npm install
+
+      - name: Run Linter
+        run: npm run lint
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Github Checkout
+        uses: actions/checkout@v2
         with:
-          milliseconds: 1000
+          fetch-depth: 0
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
