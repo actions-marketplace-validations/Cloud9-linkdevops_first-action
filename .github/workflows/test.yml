@@ -19,8 +19,6 @@ jobs:
       - name: Run Test
         run: |
           npm run test
-
-      - name: Run Sonarqube
   lint:
     runs-on: ubuntu-latest
     steps:
