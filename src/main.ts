@@ -2,6 +2,8 @@ import * as core from '@actions/core'
 import changelog from './changelog'
 
 async function run(): Promise<void> {
+  console.log('teste')
+  console.log('teste')
   try {
     const changelogFileName = core.getInput('changelog_file_name')
     const changelogFoldName = core.getInput('changelog_fold_name')
